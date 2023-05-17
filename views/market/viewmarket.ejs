@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Market Data</title>
+    <style>
+      h2{
+        text-align: center;
+      }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+  <h2>Market Data</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <% let uniqueLocations = [] %>
+        <% data.forEach(product => {
+            product.locations.forEach(location => {
+                if (!uniqueLocations.includes(location.name)) {
+                    uniqueLocations.push(location.name);
+                }
+            });
+        }) %>
+        <% uniqueLocations.forEach(location => { %>
+            <th><%= location %></th>
+        <% }) %>
+      </tr>
+    </thead>
+    <tbody>
+        <% data.forEach(product => { %>
+            <tr>
+                <td><%= product.name %></td>
+                <% uniqueLocations.forEach(location => { %>
+                    <% const currentLocation = product.locations.find(loc => loc.name === location); %>
+                    <td><%= currentLocation ? currentLocation.price : '-' %></td>
+                <% }) %>
+            </tr>
+        <% }) %>
+        <% uniqueLocations.forEach(location => { %>
+            <% const locationExists = data.some(product => product.locations.some(loc => loc.name === location)); %>
+            <% if (!locationExists) { %>
+                <tr>
+                    <td><%= location %></td>
+                    <% uniqueLocations.forEach(loc => { %>
+                        <% if (loc === location) { %>
+                            <td>-</td>
+                        <% } else { %>
+                            <td></td>
+                        <% } %>
+                    <% }) %>
+                </tr>
+            <% } %>
+        <% }) %>
+    </tbody>
+  </table>
+  <!-- Profit Calculator -->
+<h2>Profit Calculator</h2>
+<form method="POST" action="/calculateprofit">
+  <label for="product">Product:</label>
+  <select name="product" id="product">
+    <% data.forEach(product => { %>
+      <option value="<%= product.name %>"><%= product.name %></option>
+    <% }) %>
+  </select>
+
+  <label for="location">Location:</label>
+  <select name="location" id="location">
+    <% uniqueLocations.forEach(location => { %>
+      <option value="<%= location %>"><%= location %></option>
+    <% }) %>
+  </select>
+
+  <label for="quantity">Quantity (in kg):</label>
+  <input type="number" name="quantity" id="quantity" required>
+
+  <button type="submit">Calculate Profit</button>
+</form>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Market</title>
+  </head>
+  <body>
+    <form action="/addmarket" method="POST">
+      <div>
+        <label for="product">product name:</label>
+        <input type="text" name="name" id="product" />
+      </div>
+      <div>
+        <label for="location">location:</label>
+        <input type="text" name="marketLocation" id="location" />
+      </div>
+      <div>
+        <label for="price">price:</label>
+        <input type="text" name="currentPrice" id="price" />
+      </div>
+      <button>submit</button>
+    </form>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Market Data</title>
+</head>
+<body>
+    <h1>Add Market Data</h1>
+    <form action="/addmarket" method="POST">
+        <label for="product-name">Product Name:</label>
+        <input type="text" id="product-name" name="name" required>
+        <br>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        <br>
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" required>
+        <br>
+        <button type="submit">Add/Update Market Data</button>
+    </form>
+</body>
+</html>
+

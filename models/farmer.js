@@ -13,7 +13,19 @@ const FarmerSchema = new Schema({
     type:String,
     required:true,
     unique:true
-  }
+  },
+  location:{
+    type:String
+  },
+  password:{
+    type:String
+  },
+  products:[
+    {
+      type:Schema.Types.ObjectId,
+      ref:'Product'
+    }
+  ]
 });
 
 const Farmer=mongoose.model('Farmer',FarmerSchema)

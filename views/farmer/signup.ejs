@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WELCOME</title>
-</head>
-<body>
+  </head>
+  <body>
     <h2>Signup Here</h2>
     <form action="/farmer/signup" method="POST">
+      <div>
         <label for="first name">first name</label>
-        <input type="text" name="firstName" id="first name" placeholder="first name">
+        <input
+          type="text"
+          name="firstName"
+          id="first name"
+          placeholder="first name"
+        />
+      </div>
+      <div>
         <label for="last name">last name</label>
-        <input type="text" name="lastName" id="last name" placeholder="last name">
+        <input
+          type="text"
+          name="lastName"
+          id="last name"
+          placeholder="last name"
+        />
+      </div>
+      <div>
         <label for="email">email</label>
-        <input type="text" name="email" id="email"placeholder="email">
-        <button>signup</button>
+        <input type="text" name="email" id="email" placeholder="email" />
+      </div>
+      <div>
+        <label for="password">password:</label>
+        <input type="password" name="password" id="password" placeholder="password">
+      </div>
+
+      <button>signup</button>
     </form>
-</body>
+  </body>
 </html>
