@@ -5,40 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet"type="text/css" href="products.css"> -->
-    <link rel="stylesheet"type="text/css" href="../products.css">
+    <link rel="stylesheet" type="text/css" href="../products.css">
 </head>
 <body>
     <div class="products">
-        <div class="products_list">
-            <h1>my products</h1>
+        <div class="products-list">
+            <h1>My Products</h1>
             <% for (let product of products){ %>
                 <ul>
-                    <li><%=product.name %></li>
+                    <li><%= product.name %></li>
                 </ul>
-                <% } %>
+            <% } %>
         </div>
 
-        <!-- <a href="/farmers/products">add product</a> -->
-        <div class="products_new">
-            <form action="/farmer/products"method="POST">
+        <div class="products-new">
+            <h2>Add Products</h2>
+            <form action="/farmer/products" method="POST">
                 <div>
-                    <label for="name">product name:</label>
-                <input type="text" name="name" id="name">
+                    <label for="name">Product Name:</label>
+                    <input type="text" name="name" id="name">
                 </div>
                 <div>
-                    <label for="amount">amount:</label>
+                    <label for="amount">Amount:</label>
                     <input type="number" name="quantity" id="amount">
                 </div>
                 <div>
-                    <label for="price">price:</label>
+                    <label for="price">Price:</label>
                     <input type="number" name="price" id="price">
                 </div>
-               <button>submit</button>
+                <button type="submit">Submit</button>
             </form>
         </div>
-
     </div>
- 
 </body>
 </html>

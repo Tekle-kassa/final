@@ -1,6 +1,65 @@
-.products{
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.products {
     display: flex;
-    flex-direction: row;
-    
-    /* background-color: aqua; */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.products-list {
+    margin-right: 20px;
+}
+
+.products-list h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.products-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.products-list li {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.products-new form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.products-new form div {
+    margin-bottom: 10px;
+}
+
+.products-new form label {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.products-new form input {
+    padding: 5px;
+}
+
+.products-new form button {
+    padding: 10px 20px;
+    background-color: #337ab7;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.products-new form button:hover {
+    background-color: #23527c;
 }

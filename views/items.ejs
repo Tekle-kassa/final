@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posted Items</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Posted Items</h2>
+
+    <% items.forEach(item => { %>
+      <div class="item">
+        <h3><%= item.title %></h3>
+        <p>Price: <%= item.price %></p>
+        <p>Description: <%= item.description %></p>
+        <p>Posted by: <%= item.farmerName %></p>
+      </div>
+    <% }) %>
+
+    <a href="/">Go Back</a>
+  </div>
+</body>
+
+</html>

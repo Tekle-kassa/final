@@ -8,6 +8,7 @@ const nodemailer = require("nodemailer");
 const Farmer = require("./models/farmer");
 const Product = require("./models/product");
 const MarketData=require('./models/marketData')
+const Post=require('./models/post')
 
 const app = express();
 
@@ -32,7 +33,7 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home1");
 });
 app.get('/home',(req,res)=>{
   res.render('home1')
@@ -40,30 +41,20 @@ app.get('/home',(req,res)=>{
 app.get("/addmarket", (req, res) => {
   res.render("market/addmarket");
 });
-
-// POST route to add or update market data
 app.post("/addmarket", async (req, res, next) => {
   const { name, location, price } = req.body;
-
-  try {
-    // Find market data with the same product name
     let marketData = await MarketData.findOne({ name });
-
     if (marketData) {
-      // Product already exists, check if location exists
       const existingLocation = marketData.locations.find(
         (loc) => loc.location === location
       );
 
       if (existingLocation) {
-        // Location exists, update the price
         existingLocation.price = price;
       } else {
-        // Location does not exist, add a new location with the price
         marketData.locations.push({ name:location, price });
       }
     } else {
-      // Product does not exist, create a new entry
       marketData = new MarketData({
         name,
         locations: [{ name:location, price }],
@@ -73,18 +64,10 @@ app.post("/addmarket", async (req, res, next) => {
     await marketData.save();
 
     res.redirect("/viewmarket");
-  } catch (error) {
-    next(error);
-  }
+  
 });
-
-// app.get('/viewmarket',async(req,res,next)=>{
-//   const data=await MarketData.find()
-//   res.render('market/viewmarket',{data})
-// })
 app.get('/viewmarket', async (req, res, next) => {
     const marketData = await MarketData.find();
-    // console.log(marketData[0])
     res.render('market/viewmarket', { data: marketData });
 });
 app.post('/calculateProfit',async(req,res,next)=>{
@@ -98,28 +81,6 @@ app.post('/calculateProfit',async(req,res,next)=>{
   }
 
 })
-// app.post("/calculateprofit", (req, res) => {
-//   const { product, location, quantity } = req.body;
-
-//   // Retrieve the market data for the selected product and location
-//   const marketData = MarketData.findOne({ name: product });
-
-//   // Find the location within the market data
-//   const selectedLocation = marketData.locations.find(loc => loc.name === location);
-
-//   if (selectedLocation) {
-//     // Calculate the profit based on the market price and the provided quantity
-//     const profit = selectedLocation.price * quantity;
-
-//     // Return the calculated profit as a JSON response
-//     res.json({ profit });
-//   } else {
-//     // Handle the case when the selected location is not found
-//     res.status(404).json({ error: "Selected location not found" });
-//   }
-// });
-
-
 app.get("/farmer/signup", (req, res, next) => {
   res.render("farmer/signup");
 });
@@ -139,6 +100,42 @@ app.post("/farmer/products", async (req, res, next) => {
   await product.save();
   res.redirect("/viewmarket");
 });
+// GET route to render the form for posting items
+app.get('/farmer/post', (req, res) => {
+  res.render('postItem'); // Render the form view for posting items
+});
+
+// POST route to handle the submission of posted items
+app.post('/farmer/post', (req, res) => {
+  // Retrieve the form data submitted by the farmer
+  const { itemName, description, quantity, price, contactInfo, deliveryOptions } = req.body;
+  
+  // Process the data and save it to a database or perform any required actions
+  // ...
+
+  // Redirect the farmer to a confirmation page or back to the form
+  res.redirect('/farmer/posted');
+});
+
+// GET route to display the confirmation page after posting an item
+app.get('/farmer/posted', (req, res) => {
+  res.render('confirmation'); // Render the confirmation view
+});
+
+app.get('/items', async (req, res) => {
+  try {
+    // Retrieve the posted items from the database
+    const items = await Post.find().populate('farmer');
+
+    // Pass the retrieved items to the EJS template for rendering
+    res.render('items', { items });
+  } catch (error) {
+    // Handle any errors that occur during retrieval
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.listen(3000, () => {
   console.log("listening on port 3000");
 });
