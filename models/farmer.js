@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const passportLocalMongoose=require('passport-local-mongoose') 
 const Schema = mongoose.Schema;
 const FarmerSchema = new Schema({
   firstName: {
@@ -17,9 +18,9 @@ const FarmerSchema = new Schema({
   location:{
     type:String
   },
-  password:{
-    type:String
-  },
+  // password:{
+  //   type:String
+  // },
   products:[
     {
       type:Schema.Types.ObjectId,
@@ -27,6 +28,7 @@ const FarmerSchema = new Schema({
     }
   ]
 });
+FarmerSchema.plugin(passportLocalMongoose)//this will add username and password to the FarmerSchema
 
 const Farmer=mongoose.model('Farmer',FarmerSchema)
 module.exports=Farmer

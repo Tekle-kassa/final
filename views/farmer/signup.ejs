@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WELCOME</title>
-    <link rel="stylesheet" href="../signup.css">
+    <link rel="stylesheet" href="../signup.css" />
   </head>
   <body>
     <h2>Signup Here</h2>
@@ -17,6 +17,7 @@
           name="firstName"
           id="first name"
           placeholder="first name"
+          required
         />
       </div>
       <div>
@@ -26,15 +27,32 @@
           name="lastName"
           id="last name"
           placeholder="last name"
+          required
         />
       </div>
       <div>
+        <label for="username">username:</label>
+        <input type="text" name="username" id="username"placeholder="username" required >
+      </div>
+      <div>
         <label for="email">email</label>
-        <input type="text" name="email" id="email" placeholder="email" />
+        <input
+          type="text"
+          name="email"
+          id="email"
+          placeholder="email"
+          required
+        />
       </div>
       <div>
         <label for="password">password:</label>
-        <input type="password" name="password" id="password" placeholder="password">
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="password"
+          required
+        />
       </div>
 
       <button>signup</button>

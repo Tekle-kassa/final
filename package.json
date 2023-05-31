@@ -1,50 +1,37 @@
 {
-  
   "name": "01",
-  
   "version": "1.0.0",
-  
   "main": "app.js",
-  
   "scripts": {
-  
-    
-  "test": "echo \"Error: no test specified\" && exit 1"
-  
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  
   "author": "",
-  
   "license": "ISC",
-  
-  "description": "",
-  
   "dependencies": {
-  
-    
-  "ejs": "^3.1.9",
-  
-    
-  "ejs-mate": "^4.0.0",
-  
-    
-  "express": "^4.18.2",
-  
-    
-  "method-override": "^3.0.0",
-  
-    
-  "mongoose": "^7.1.0",
-  
-    
-  "nodemailer": "^6.9.2"
-  
+    "bcrypt": "^5.1.0",
+    "connect-flash": "^0.1.1",
+    "ejs": "^3.1.9",
+    "ejs-mate": "^4.0.0",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "method-override": "^3.0.0",
+    "mongoose": "^7.1.0",
+    "nodemailer": "^6.9.2",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0"
   },
-  
   "devDependencies": {
-  
-    
-  "nodemon": "^2.0.22"
-  
-  }
+    "nodemon": "^2.0.22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tekle-kassa/final.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Tekle-kassa/final/issues"
+  },
+  "homepage": "https://github.com/Tekle-kassa/final#readme",
+  "description": ""
 }
